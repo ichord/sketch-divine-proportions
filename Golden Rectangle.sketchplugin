@@ -1,0 +1,8 @@
+#import 'lib.js'
+
+function goldenRect (width) {
+  rect = makeRect(canvas, width, width / 1.618)
+  rect.name = "Golden Rectangle"
+  rect
+}
+goldenRect (600)

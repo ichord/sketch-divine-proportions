@@ -1,0 +1,83 @@
+#import 'lib.js'
+
+function goldenSpiral(width) {
+  function draw (x, y, w, h) {
+    segm = h * ratio;
+    start = NSMakePoint(x, y)
+    middle = NSMakePoint(x + segm, y - h + segm);
+    middleCtrl = NSMakePoint(x , y - h + segm * 2);
+    end = NSMakePoint(x + h, y - h)
+    endCtrl = NSMakePoint(x + segm * 2, y - h);
+
+    bzPath = NSBezierPath.new()
+    [bzPath moveToPoint:start]
+    [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+    [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+    makeCurve(group, bzPath)
+
+    x = x + h
+    y = y - h
+    w = w - h
+    segm = w * ratio
+    start = NSMakePoint(x, y)
+    middle = NSMakePoint(x + w - segm, y + segm)
+    middleCtrl = NSMakePoint(x + w - 2 * segm , y)
+    end = NSMakePoint(x + w, y + w)
+    endCtrl = NSMakePoint(x + w, y + 2 * segm)
+    bzPath = NSBezierPath.new()
+    [bzPath moveToPoint:start]
+    [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+    [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+    makeCurve(group, bzPath)
+
+    y = y + w
+    x = x + w
+    h = h - w
+    segm = h * ratio
+    start = NSMakePoint(x, y)
+    middle = NSMakePoint(x - segm, y + h - segm)
+    middleCtrl = NSMakePoint(x, y + h - 2 * segm)
+    end = NSMakePoint(x - h, y + h)
+    endCtrl = NSMakePoint(x - 2 * segm, y + h)
+    bzPath = NSBezierPath.new()
+    [bzPath moveToPoint:start]
+    [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+    [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+    makeCurve(group, bzPath)
+
+    y = y + h
+    x = x - h
+    w = w - h
+    segm = w * ratio
+    start = NSMakePoint(x, y)
+    middle = NSMakePoint(x - w + segm, y - segm)
+    middleCtrl = NSMakePoint(x - w + 2 * segm, y)
+    end = NSMakePoint(x - w, y - w)
+    endCtrl = NSMakePoint(x - w, y - 2 * segm)
+    bzPath = NSBezierPath.new()
+    [bzPath moveToPoint:start]
+    [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+    [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+    makeCurve(group, bzPath)
+
+    return {
+      x: x - w,
+      y: y - w,
+      w: w,
+      h: h - w
+    }
+  }
+  group = canvas.addLayerOfType("group") 
+  group.name = "Golden Sprial"
+  group.ignoreNextClickThrough = true
+  group.constrainProportions = true
+
+  var ratio = 0.293
+  h = width / 1.618 
+  var rect = draw(0,0+h,width,h)
+  draw(rect.x, rect.y, rect.w, rect.h)
+
+  group.resizeRoot()
+  group
+}
+goldenSpiral(600)
