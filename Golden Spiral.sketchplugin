@@ -1,7 +1,7 @@
 #import 'lib.js'
 
 function goldenSpiral(width) {
-  function draw (x, y, w, h) {
+  function draw (bzPath, x, y, w, h) {
     segm = h * ratio;
     start = NSMakePoint(x, y)
     middle = NSMakePoint(x + segm, y - h + segm);
@@ -9,11 +9,9 @@ function goldenSpiral(width) {
     end = NSMakePoint(x + h, y - h)
     endCtrl = NSMakePoint(x + segm * 2, y - h);
 
-    bzPath = NSBezierPath.new()
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makePath(group, bzPath)
 
     x = x + h
     y = y - h
@@ -24,11 +22,9 @@ function goldenSpiral(width) {
     middleCtrl = NSMakePoint(x + w - 2 * segm , y)
     end = NSMakePoint(x + w, y + w)
     endCtrl = NSMakePoint(x + w, y + 2 * segm)
-    bzPath = NSBezierPath.new()
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makePath(group, bzPath)
 
     y = y + w
     x = x + w
@@ -39,11 +35,9 @@ function goldenSpiral(width) {
     middleCtrl = NSMakePoint(x, y + h - 2 * segm)
     end = NSMakePoint(x - h, y + h)
     endCtrl = NSMakePoint(x - 2 * segm, y + h)
-    bzPath = NSBezierPath.new()
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makePath(group, bzPath)
 
     y = y + h
     x = x - h
@@ -54,13 +48,12 @@ function goldenSpiral(width) {
     middleCtrl = NSMakePoint(x - w + 2 * segm, y)
     end = NSMakePoint(x - w, y - w)
     endCtrl = NSMakePoint(x - w, y - 2 * segm)
-    bzPath = NSBezierPath.new()
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makePath(group, bzPath)
 
     return {
+      path: bzPath,
       x: x - w,
       y: y - w,
       w: w,
@@ -72,10 +65,12 @@ function goldenSpiral(width) {
   group.ignoreNextClickThrough = true
   group.constrainProportions = true
 
-  var ratio = 0.293
+  ratio = 0.293
   h = width / 1.618 
-  var rect = draw(0,0+h,width,h)
-  draw(rect.x, rect.y, rect.w, rect.h)
+  bzPath = NSBezierPath.new()
+  info = draw(bzPath, 0,0+h,width,h)
+  info = draw(info.path, info.x, info.y, info.w, info.h)
+  makePath(group, info.path)
 
   group.resizeRoot()
   group
