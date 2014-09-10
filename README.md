@@ -3,7 +3,7 @@
 Basically, it's a clone edition of https://github.com/marcosecchi/divine_proportions_toolkit  
 But not completely cloned yet. I'm working on it.
 
-![Banner](http://utom.us/new/assets/imgs/sketch-measure-icon@2x.png)
+![Banner](https://raw.githubusercontent.com/ichord/sketch-divine-proportions/banner/banner.png)
 
 ## Installing Plugins
 ### The conventional way:
