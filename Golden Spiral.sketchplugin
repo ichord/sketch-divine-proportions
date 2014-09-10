@@ -13,7 +13,7 @@ function goldenSpiral(width) {
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makeCurve(group, bzPath)
+    makePath(group, bzPath)
 
     x = x + h
     y = y - h
@@ -28,7 +28,7 @@ function goldenSpiral(width) {
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makeCurve(group, bzPath)
+    makePath(group, bzPath)
 
     y = y + w
     x = x + w
@@ -43,7 +43,7 @@ function goldenSpiral(width) {
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makeCurve(group, bzPath)
+    makePath(group, bzPath)
 
     y = y + h
     x = x - h
@@ -58,7 +58,7 @@ function goldenSpiral(width) {
     [bzPath moveToPoint:start]
     [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
     [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
-    makeCurve(group, bzPath)
+    makePath(group, bzPath)
 
     return {
       x: x - w,

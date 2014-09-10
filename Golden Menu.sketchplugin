@@ -1,0 +1,38 @@
+#import 'lib.js'
+
+function goldenMenu (width) {
+
+  group = canvas.addLayerOfType("group") 
+  group.name = "Golden Menu"
+  group.ignoreNextClickThrough = true
+  group.constrainProportions = true
+
+  radio = 0.382
+  rect = goldenRect(group, width)
+  w = rect.frame().width()
+  h = rect.frame().height()
+  x = rect.frame().x()
+  y = rect.frame().y()
+
+  vSection = w * radio
+  hSection = h * radio
+
+  bzPath = NSBezierPath.new()
+  bzPath.moveToPoint(NSMakePoint(x + vSection, y))
+  bzPath.lineToPoint(NSMakePoint(x + vSection, y + h))
+
+  bzPath.moveToPoint(NSMakePoint(w - vSection + x, y))
+  bzPath.lineToPoint(NSMakePoint(w - vSection + x, y + h))
+
+  bzPath.moveToPoint(NSMakePoint(x, y + hSection))
+  bzPath.lineToPoint(NSMakePoint(x + w, y + hSection)) 
+
+  bzPath.moveToPoint(NSMakePoint(x, y + h - hSection))
+  bzPath.lineToPoint(NSMakePoint(x + w, y + h - hSection)) 
+
+  makePath(group, bzPath)
+  group.resizeRoot()
+  return group
+}
+
+goldenMenu(600)
