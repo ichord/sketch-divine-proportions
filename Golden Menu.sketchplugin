@@ -8,16 +8,18 @@ function goldenMenu (width) {
   group.constrainProportions = true
 
   radio = 0.382
-  rect = goldenRect(group, width)
-  w = rect.frame().width()
-  h = rect.frame().height()
-  x = rect.frame().x()
-  y = rect.frame().y()
+  w = width
+  h = width / 1.618
+  x = 0
+  y = 0
 
   vSection = w * radio
   hSection = h * radio
 
   bzPath = NSBezierPath.new()
+
+  bzPath.appendBezierPathWithRect(NSMakeRect(x, y, w, h))
+
   bzPath.moveToPoint(NSMakePoint(x + vSection, y))
   bzPath.lineToPoint(NSMakePoint(x + vSection, y + h))
 
