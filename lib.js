@@ -20,13 +20,15 @@ function makeRect (parent, width, height, x, y) {
   return layer
 }
 
-function makePath (parent, path) {
+function makePath (parent, path, name) {
   msPath = BCBezierPath.bezierPathWithNSBezierPath(bzPath)
   layer = MSShapeGroup.shapeWithBezierPath(msPath)
+  layer.name = name || parent.name()
   layer.style().borders().addNewStylePart()
   layer.style().border().position = 0
   layer.style().border().thickness = 1
   layer.style().border().color = [MSColor colorWithHex:"979797" alpha:1.0]
+  layer.constrainProportions = true
 
   return parent.addLayer(layer)
 }
@@ -34,6 +36,7 @@ function makePath (parent, path) {
 function goldenRect (parent, width) {
   rect = makeRect(parent, width, width / 1.618)
   rect.name = "Golden Rectangle"
+  rect.constrainProportions = true
   return rect
 }
 
@@ -62,7 +65,7 @@ function makeGrid (parent, width, radio) {
   bzPath.moveToPoint(NSMakePoint(x, y + h - hSection))
   bzPath.lineToPoint(NSMakePoint(x + w, y + h - hSection))
 
-  return makePath(group, bzPath)
+  return makePath(parent, bzPath)
 }
 
 function addGroup(name, callback) {
