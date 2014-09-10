@@ -36,3 +36,31 @@ function goldenRect (parent, width) {
   rect.name = "Golden Rectangle"
   return rect
 }
+
+function makeGrid (parent, width, radio) {
+  w = width
+  h = width / 1.618
+  x = 0
+  y = 0
+
+  vSection = w * radio
+  hSection = h * radio
+
+  bzPath = NSBezierPath.new()
+
+  bzPath.appendBezierPathWithRect(NSMakeRect(x, y, w, h))
+
+  bzPath.moveToPoint(NSMakePoint(x + vSection, y))
+  bzPath.lineToPoint(NSMakePoint(x + vSection, y + h))
+
+  bzPath.moveToPoint(NSMakePoint(w - vSection + x, y))
+  bzPath.lineToPoint(NSMakePoint(w - vSection + x, y + h))
+
+  bzPath.moveToPoint(NSMakePoint(x, y + hSection))
+  bzPath.lineToPoint(NSMakePoint(x + w, y + hSection))
+
+  bzPath.moveToPoint(NSMakePoint(x, y + h - hSection))
+  bzPath.lineToPoint(NSMakePoint(x + w, y + h - hSection))
+
+  return makePath(group, bzPath)
+}
