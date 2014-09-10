@@ -1,36 +1,46 @@
 #import 'lib.js'
 
 function goldenSpiralSection (width) {
-  function draw (rect) {
-    w = rect.frame().width() - rect.frame().height()
-    h = rect.frame().height()
-    x = rect.frame().x() + h
-    y = rect.frame().y()
-    rect1 = makeRect(group, w, h, x, y)
+  function draw (bzPath, x, y, w, h) {
+    w = w - h
+    x = x + h
+    bzPath.moveToPoint(NSMakePoint(x, y))
+    bzPath.lineToPoint(NSMakePoint(x , y + h))
 
-    w = rect1.frame().width()
-    h = rect1.frame().height() - rect1.frame().width()
-    x = rect1.frame().x()
-    y = rect1.frame().y() + (rect1.frame().height() - h)
-    rect2 = makeRect(group, w, h, x, y)
+    h = h - w
+    y = y + w
+    bzPath.moveToPoint(NSMakePoint(x, y))
+    bzPath.lineToPoint(NSMakePoint(x + w, y))
 
-    w = rect2.frame().width() - rect2.frame().height()
-    h = rect2.frame().height()
-    x = rect2.frame().x()
-    y = rect2.frame().y()
-    rect3 = makeRect(group, w, h, x, y)
+    w = w - h
+    bzPath.moveToPoint(NSMakePoint(x + w, y))
+    bzPath.lineToPoint(NSMakePoint(x + w, y + h))
 
-    w = rect3.frame().width()
-    h = rect3.frame().height() - rect3.frame().width()
-    x = rect3.frame().x()
-    y = rect3.frame().y()
-    return makeRect(group, w, h, x, y)
+    h = h - w
+    bzPath.moveToPoint(NSMakePoint(x, y + h))
+    bzPath.lineToPoint(NSMakePoint(x + w, y + h))
+
+    return {
+      path: bzPath,
+      x: x,
+      y: y,
+      w: w,
+      h: h
+    }
   }
+
   height = width / 1.618
+
   group = canvas.addLayerOfType("group")
   group.name = "Golden Spiral Section"
-  rect = makeRect(group, width, height, 0, 0)
-  draw(draw(rect))
+
+  bzPath = NSBezierPath.new()
+  bzPath.appendBezierPathWithRect(NSMakeRect(0, 0, width, height))
+
+  info = draw(bzPath, 0, 0, width, height)
+  path = draw(info.path, info.x, info.y, info.w, info.h).path
+  makePath(group, path)
+
   group.resizeRoot()
   group.ignoreNextClickThrough = true
   group.constrainProportions = true
