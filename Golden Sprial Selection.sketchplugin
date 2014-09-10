@@ -1,6 +1,16 @@
 #import 'lib.js'
 
-function goldenSpiralSection (width) {
+var width = 600
+addGroup("Golden Spiral Section", function(group){
+
+  height = width / 1.618
+
+  bzPath = NSBezierPath.new()
+  bzPath.appendBezierPathWithRect(NSMakeRect(0, 0, width, height))
+
+  info = draw(bzPath, 0, 0, width, height)
+  path = draw(info.path, info.x, info.y, info.w, info.h).path
+  makePath(group, path) 
   function draw (bzPath, x, y, w, h) {
     w = w - h
     x = x + h
@@ -28,22 +38,5 @@ function goldenSpiralSection (width) {
       h: h
     }
   }
-
-  height = width / 1.618
-
-  group = canvas.addLayerOfType("group")
-  group.name = "Golden Spiral Section"
-
-  bzPath = NSBezierPath.new()
-  bzPath.appendBezierPathWithRect(NSMakeRect(0, 0, width, height))
-
-  info = draw(bzPath, 0, 0, width, height)
-  path = draw(info.path, info.x, info.y, info.w, info.h).path
-  makePath(group, path)
-
-  group.resizeRoot()
-  group.ignoreNextClickThrough = true
-  group.constrainProportions = true
-  group
-}
-goldenSpiralSection(600)
+  
+})

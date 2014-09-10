@@ -1,16 +1,5 @@
 #import 'lib.js'
 
-function roleOfThirds(width) {
-
-  group = canvas.addLayerOfType("group")
-  group.name = "Role Of Thirds"
-  group.ignoreNextClickThrough = true
-  group.constrainProportions = true
-
-  makeGrid(group, width, 1/3)
-
-  group.resizeRoot()
-  return group
-}
-
-roleOfThirds(600)
+addGroup("Role Of Thirds", function(){
+  makeGrid(group, 600, 1/3)
+})

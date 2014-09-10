@@ -1,15 +1,5 @@
 #import 'lib.js'
 
-function goldenMenu (width) {
-
-  group = canvas.addLayerOfType("group") 
-  group.name = "Golden Menu"
-  group.ignoreNextClickThrough = true
-  group.constrainProportions = true
-
-  makeGrid(group, width, 0.382)
-  group.resizeRoot()
-  return group
-}
-
-goldenMenu(600)
+addGroup("Golden Menu", function(group){
+  makeGrid(group, 600, 0.382)
+})

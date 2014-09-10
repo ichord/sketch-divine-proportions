@@ -64,3 +64,13 @@ function makeGrid (parent, width, radio) {
 
   return makePath(group, bzPath)
 }
+
+function addGroup(name, callback) {
+  group = canvas.addLayerOfType("group") 
+  group.name = name
+  group.ignoreNextClickThrough = true
+  group.constrainProportions = true
+  callback.call(this, group)
+  group.resizeRoot()
+  return group
+}

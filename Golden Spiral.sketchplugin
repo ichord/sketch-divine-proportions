@@ -1,6 +1,15 @@
 #import 'lib.js'
 
-function goldenSpiral(width) {
+var width = 600
+addGroup("Golden Sprial", function(group) {
+  
+  ratio = 0.293
+  h = width / 1.618 
+  bzPath = NSBezierPath.new()
+  info = draw(bzPath, 0,0+h,width,h)
+  info = draw(info.path, info.x, info.y, info.w, info.h)
+  makePath(group, info.path) 
+
   function draw (bzPath, x, y, w, h) {
     segm = h * ratio;
     start = NSMakePoint(x, y)
@@ -60,19 +69,4 @@ function goldenSpiral(width) {
       h: h - w
     }
   }
-  group = canvas.addLayerOfType("group") 
-  group.name = "Golden Sprial"
-  group.ignoreNextClickThrough = true
-  group.constrainProportions = true
-
-  ratio = 0.293
-  h = width / 1.618 
-  bzPath = NSBezierPath.new()
-  info = draw(bzPath, 0,0+h,width,h)
-  info = draw(info.path, info.x, info.y, info.w, info.h)
-  makePath(group, info.path)
-
-  group.resizeRoot()
-  group
-}
-goldenSpiral(600)
+})
