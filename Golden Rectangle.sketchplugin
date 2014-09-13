@@ -1,3 +1,4 @@
 #import 'lib.js'
-
-goldenRect(canvas, 600)
+loopSelectedLayers(function(layerRect) {
+  goldenRect(canvas, layerRect)
+})

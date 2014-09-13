@@ -1,5 +1,7 @@
 #import 'lib.js'
 
-addGroup("Golden Menu", function(group){
-  makeGrid(group, 600, 0.382)
+loopSelectedLayers(function(layerRect) {
+  addGroup("Golden Menu", function(group){
+    makeGrid(group, layerRect, 0.382)
+  })
 })

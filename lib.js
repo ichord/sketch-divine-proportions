@@ -33,18 +33,18 @@ function makePath (parent, path, name) {
   return parent.addLayer(layer)
 }
 
-function goldenRect (parent, width) {
-  rect = makeRect(parent, width, width / 1.618)
+function goldenRect (parent, rect) {
+  rect = makeRect(parent, rect.w, rect.w / 1.618, rect.x, rect.y)
   rect.name = "Golden Rectangle"
   rect.constrainProportions = true
   return rect
 }
 
-function makeGrid (parent, width, radio) {
-  w = width
-  h = width / 1.618
-  x = 0
-  y = 0
+function makeGrid (parent, rect, radio) {
+  w = rect.w
+  h = rect.h
+  x = rect.x
+  y = rect.y
 
   vSection = w * radio
   hSection = h * radio
@@ -68,12 +68,33 @@ function makeGrid (parent, width, radio) {
   return makePath(parent, bzPath)
 }
 
-function addGroup(name, callback) {
+function addGroup(name, drawingAction) {
   group = canvas.addLayerOfType("group") 
   group.name = name
   group.ignoreNextClickThrough = true
   group.constrainProportions = true
-  callback.call(this, group)
+  drawingAction.call(this, group)
   group.resizeRoot()
   return group
+}
+
+function loopSelectedLayers(action) {
+  var loop = selection.objectEnumerator()
+  if (selection.count() == 0) {
+    action.call(this, {
+      x: 0,
+      y: 0,
+      w: 600,
+      h: 600 / 1.618
+    })
+  }
+  while (sel = loop.nextObject()) {
+    isArtBoard = sel.class() == MSArtboardGroup
+    action.call(this, {
+      x: isArtBoard ? 0 : sel.frame().x(),
+      y: isArtBoard ? 0 : sel.frame().y(),
+      w: sel.frame().width(),
+      h: sel.frame().height()
+    })
+  }
 }

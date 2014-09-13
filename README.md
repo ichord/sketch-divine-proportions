@@ -12,8 +12,9 @@ But not completely cloned yet. I'm working on it.
 
 ## How-to
 
-Just select the proportion you want.  
-And then you can rotate it and change it's color, border and so on.
+First, select a layer, some layers or no layers.  
+Then select the proportion option; They would be drawn within the selection.  
+After drawing the shape, you can rotate it and change it's color, border and so on.  
 
 ##Contact
 

@@ -1,5 +1,7 @@
 #import 'lib.js'
 
-addGroup("Role Of Thirds", function(){
-  makeGrid(group, 600, 1/3)
+loopSelectedLayers(function(layerRect) {
+  addGroup("Role Of Thirds", function(group){
+    makeGrid(group, layerRect, 1/3)
+  })
 })
