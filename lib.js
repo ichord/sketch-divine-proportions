@@ -3,7 +3,7 @@ artboard = page.currentArtboard()
 canvas = artboard || page
 
 function makeRect (parent, width, height, x, y) {
-  layer = parent.addLayerOfType("rectangle")
+  var layer = MSRectangleShape.new().embedInShapeGroup()
 
   layer.frame().width = width
   layer.frame().height = height
@@ -13,24 +13,25 @@ function makeRect (parent, width, height, x, y) {
   layer.style().borders().addNewStylePart()
   layer.style().border().position = 0
   layer.style().border().thickness = 1
-  layer.style().border().color = [MSColor colorWithHex:"979797" alpha:1.0]
+  layer.style().border().color = [MSColor colorWithSVGString:"#979797"]
 
   layer.style().fills().addNewStylePart()
-  layer.style().fill().color = [MSColor colorWithHex:"FFFFFF" alpha:0.0]
+  layer.style().fill().color = [MSColor colorWithSVGString:"#FFFFFF"]
+
+  parent.addLayers([layer])
   return layer
 }
 
 function makePath (parent, path, name) {
-  msPath = BCBezierPath.bezierPathWithNSBezierPath(bzPath)
-  layer = MSShapeGroup.shapeWithBezierPath(msPath)
+  layer = MSShapeGroup.shapeWithBezierPath(bzPath)
   layer.name = name || parent.name()
   layer.style().borders().addNewStylePart()
   layer.style().border().position = 0
   layer.style().border().thickness = 1
-  layer.style().border().color = [MSColor colorWithHex:"979797" alpha:1.0]
+  layer.style().border().color = [MSColor colorWithSVGString:"#979797"]
   layer.constrainProportions = true
 
-  return parent.addLayer(layer)
+  return parent.addLayers([layer])
 }
 
 function goldenRect (parent, rect) {
@@ -74,7 +75,7 @@ function addGroup(name, drawingAction) {
   group.ignoreNextClickThrough = true
   group.constrainProportions = true
   drawingAction.call(this, group)
-  group.resizeRoot()
+  group.resizeRoot(0)
   return group
 }
 
