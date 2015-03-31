@@ -35,7 +35,7 @@ function makePath (parent, path, name) {
 }
 
 function goldenRect (parent, rect) {
-  rect = makeRect(parent, rect.w, rect.w / 1.618, rect.x, rect.y)
+  rect = makeRect(parent, rect.w, rect.h / 1.618, rect.x, rect.y)
   rect.name = "Golden Rectangle"
   rect.constrainProportions = true
   return rect
