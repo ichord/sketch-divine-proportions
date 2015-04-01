@@ -2,6 +2,6 @@
 
 loopSelectedLayers(function(layerRect) {
   addGroup("Golden Menu", function(group){
-    makeGrid(group, layerRect, 0.382)
-  })
+    makeGrid(group, layerRect, 0.382);
+  });
 })

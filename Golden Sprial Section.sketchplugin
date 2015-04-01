@@ -3,35 +3,35 @@
 loopSelectedLayers(function(layerRect) {
   addGroup("Golden Spiral Section", function(group){
 
-    width = layerRect.w
-    height = width / 1.618
-    x = layerRect.x
-    y = layerRect.y
+    width = layerRect.w;
+    height = width / 1.618;
+    x = layerRect.x;
+    y = layerRect.y;
 
-    bzPath = NSBezierPath.new()
-    bzPath.appendBezierPathWithRect(NSMakeRect(x, y, width, height))
+    bzPath = NSBezierPath.new();
+    bzPath.appendBezierPathWithRect(NSMakeRect(x, y, width, height));
 
-    info = draw(bzPath, x, y, width, height)
-    path = draw(info.path, info.x, info.y, info.w, info.h).path
-    makePath(group, path) 
+    info = draw(bzPath, x, y, width, height);
+    path = draw(info.path, info.x, info.y, info.w, info.h).path;
+    makePath(group, path) ;
     function draw (bzPath, x, y, w, h) {
-      w = w - h
-      x = x + h
-      bzPath.moveToPoint(NSMakePoint(x, y))
-      bzPath.lineToPoint(NSMakePoint(x , y + h))
+      w = w - h;
+      x = x + h;
+      bzPath.moveToPoint(NSMakePoint(x, y));
+      bzPath.lineToPoint(NSMakePoint(x , y + h));
 
-      h = h - w
-      y = y + w
-      bzPath.moveToPoint(NSMakePoint(x, y))
-      bzPath.lineToPoint(NSMakePoint(x + w, y))
+      h = h - w;
+      y = y + w;
+      bzPath.moveToPoint(NSMakePoint(x, y));
+      bzPath.lineToPoint(NSMakePoint(x + w, y));
 
-      w = w - h
-      bzPath.moveToPoint(NSMakePoint(x + w, y))
-      bzPath.lineToPoint(NSMakePoint(x + w, y + h))
+      w = w - h;
+      bzPath.moveToPoint(NSMakePoint(x + w, y));
+      bzPath.lineToPoint(NSMakePoint(x + w, y + h));
 
-      h = h - w
-      bzPath.moveToPoint(NSMakePoint(x, y + h))
-      bzPath.lineToPoint(NSMakePoint(x + w, y + h))
+      h = h - w;
+      bzPath.moveToPoint(NSMakePoint(x, y + h));
+      bzPath.lineToPoint(NSMakePoint(x + w, y + h));
 
       return {
         path: bzPath,
@@ -39,7 +39,7 @@ loopSelectedLayers(function(layerRect) {
         y: y,
         w: w,
         h: h
-      }
+      };
     }
-  })
+  });
 })
