@@ -1,17 +1,17 @@
-#import 'lib.js'
+@import 'lib.js'
 
 loopSelectedLayers(function(layerRect) {
   addGroup("Golden Sprial", function(group) {
     width = layerRect.w
     x = layerRect.x
     y = layerRect.y
-    h = width / 1.618 
+    h = width / 1.618
     ratio = 0.293
-    
+
     bzPath = NSBezierPath.new()
     info = draw(bzPath, x,y+h,width,h)
     info = draw(info.path, info.x, info.y, info.w, info.h)
-    makePath(group, info.path) 
+    makePath(group, info.path)
 
     function draw (bzPath, x, y, w, h) {
       segm = h * ratio;

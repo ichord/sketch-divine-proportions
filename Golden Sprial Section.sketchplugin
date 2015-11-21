@@ -1,4 +1,4 @@
-#import 'lib.js'
+@import 'lib.js'
 
 loopSelectedLayers(function(layerRect) {
   addGroup("Golden Spiral Section", function(group){
@@ -13,7 +13,7 @@ loopSelectedLayers(function(layerRect) {
 
     info = draw(bzPath, x, y, width, height)
     path = draw(info.path, info.x, info.y, info.w, info.h).path
-    makePath(group, path) 
+    makePath(group, path)
     function draw (bzPath, x, y, w, h) {
       w = w - h
       x = x + h

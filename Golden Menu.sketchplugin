@@ -1,4 +1,4 @@
-#import 'lib.js'
+@import 'lib.js'
 
 loopSelectedLayers(function(layerRect) {
   addGroup("Golden Menu", function(group){

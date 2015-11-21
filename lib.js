@@ -2,8 +2,8 @@ page = doc.currentPage()
 artboard = page.currentArtboard()
 canvas = artboard || page
 
-function makeRect (parent, width, height, x, y) {
-  var layer = MSRectangleShape.new().embedInShapeGroup()
+function makeRect(parent, width, height, x, y) {
+  var layer = parent.addLayerOfType("rectangle")
 
   layer.frame().width = width
   layer.frame().height = height
@@ -16,9 +16,8 @@ function makeRect (parent, width, height, x, y) {
   layer.style().border().color = [MSColor colorWithSVGString:"#979797"]
 
   layer.style().fills().addNewStylePart()
-  layer.style().fill().color = [MSColor colorWithSVGString:"#FFFFFF"]
+  layer.style().fill().color = [MSColor colorWithRed:0 green:0 blue:0 alpha:0.0]
 
-  parent.addLayers([layer])
   return layer
 }
 
@@ -70,7 +69,7 @@ function makeGrid (parent, rect, radio) {
 }
 
 function addGroup(name, drawingAction) {
-  group = canvas.addLayerOfType("group") 
+  group = canvas.addLayerOfType("group")
   group.name = name
   group.ignoreNextClickThrough = true
   group.constrainProportions = true
