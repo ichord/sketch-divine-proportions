@@ -1,0 +1,80 @@
+@import 'lib.js'
+
+function onRun(context) {
+  initEnv(context)
+
+  loopSelectedLayers(function(layerRect) {
+    addGroup("Golden Sprial", function(group) {
+      width = layerRect.w
+      x = layerRect.x
+      y = layerRect.y
+      h = width / 1.618
+      ratio = 0.293
+
+      bzPath = NSBezierPath.new()
+      info = draw(bzPath, x,y+h,width,h)
+      info = draw(info.path, info.x, info.y, info.w, info.h)
+      makePath(group, info.path)
+
+      function draw (bzPath, x, y, w, h) {
+        segm = h * ratio;
+        start = NSMakePoint(x, y)
+        middle = NSMakePoint(x + segm, y - h + segm);
+        middleCtrl = NSMakePoint(x , y - h + segm * 2);
+        end = NSMakePoint(x + h, y - h)
+        endCtrl = NSMakePoint(x + segm * 2, y - h);
+
+        [bzPath moveToPoint:start]
+        [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+        [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+
+        x = x + h
+        y = y - h
+        w = w - h
+        segm = w * ratio
+        start = NSMakePoint(x, y)
+        middle = NSMakePoint(x + w - segm, y + segm)
+        middleCtrl = NSMakePoint(x + w - 2 * segm , y)
+        end = NSMakePoint(x + w, y + w)
+        endCtrl = NSMakePoint(x + w, y + 2 * segm)
+        [bzPath moveToPoint:start]
+        [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+        [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+
+        y = y + w
+        x = x + w
+        h = h - w
+        segm = h * ratio
+        start = NSMakePoint(x, y)
+        middle = NSMakePoint(x - segm, y + h - segm)
+        middleCtrl = NSMakePoint(x, y + h - 2 * segm)
+        end = NSMakePoint(x - h, y + h)
+        endCtrl = NSMakePoint(x - 2 * segm, y + h)
+        [bzPath moveToPoint:start]
+        [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+        [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+
+        y = y + h
+        x = x - h
+        w = w - h
+        segm = w * ratio
+        start = NSMakePoint(x, y)
+        middle = NSMakePoint(x - w + segm, y - segm)
+        middleCtrl = NSMakePoint(x - w + 2 * segm, y)
+        end = NSMakePoint(x - w, y - w)
+        endCtrl = NSMakePoint(x - w, y - 2 * segm)
+        [bzPath moveToPoint:start]
+        [bzPath curveToPoint:middle controlPoint1:start controlPoint2:middleCtrl]
+        [bzPath curveToPoint:end controlPoint1:middle controlPoint2:endCtrl]
+
+        return {
+          path: bzPath,
+          x: x - w,
+          y: y - w,
+          w: w,
+          h: h - w
+        }
+      }
+    })
+  })
+}

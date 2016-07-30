@@ -1,5 +1,0 @@
-@import 'lib.js'
-
-loopSelectedLayers(function(layerRect) {
-  goldenRect(canvas, layerRect)
-})

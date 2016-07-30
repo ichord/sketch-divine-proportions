@@ -1,0 +1,10 @@
+@import 'lib.js'
+
+function onRun(context) {
+  initEnv(context)
+  loopSelectedLayers(function(layerRect) {
+    addGroup("Golden Menu", function(group){
+      makeGrid(group, layerRect, 0.382)
+    })
+  })
+}

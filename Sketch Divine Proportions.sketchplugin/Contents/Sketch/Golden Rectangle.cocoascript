@@ -1,0 +1,8 @@
+@import 'lib.js'
+
+function onRun(context) {
+  initEnv(context)
+  loopSelectedLayers(function(layerRect) {
+    goldenRect(canvas, layerRect)
+  })
+}

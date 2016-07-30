@@ -8,7 +8,7 @@ But not completely cloned yet. I'm working on it.
 ## Installing Plugins
 
 1. [Download the ZIP file](https://github.com/ichord/sketch-divine-proportions/archive/master.zip)
-2. Copy the contents to the plugin folder (Open up Sketch, and go to `Plugins` › `Reveal Plugins Folder…` to open it.)
+2. Open the Sketch Divine Proportions.sketchplugin
 
 ## How-to
 

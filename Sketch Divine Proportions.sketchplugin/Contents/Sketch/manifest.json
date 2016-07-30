@@ -1,0 +1,56 @@
+{
+  "name" : "Sketch Divine Proportions",
+  "description" : "Pretty much the smallest example Sketch Plugin you could have.",
+  "author" : "Chord.Luo",
+  "authorEmail" : "chord.luo@gmail.com",
+  "identifier" : "com.ichord.sketch.divine-proportions",
+  "version" : 1.0,
+  "commands": [
+    {
+      "name": "Golden Menu",
+      "identifier": "golden_menu",
+      "script": "Golden Menu.cocoascript"
+    },
+    {
+      "name": "Golden Rectangle",
+      "identifier": "golden_rectangle",
+      "script": "Golden Rectangle.cocoascript"
+    },
+    {
+      "name": "Golden Spiral",
+      "identifier": "golden_spiral",
+      "script": "Golden Spiral.cocoascript"
+    },
+    {
+      "name": "Golden Spiral Section",
+      "identifier": "golden_spiral_section",
+      "script": "Golden Spiral Section.cocoascript"
+    },
+    {
+      "name": "Golden Triangle",
+      "identifier": "golden_triangle",
+      "script": "Golden Triangle.cocoascript"
+    },
+    {
+      "name": "Harmonious Triangle",
+      "identifier": "harmonious_triangle",
+      "script": "Harmonious Triangle.cocoascript"
+    },
+    {
+      "name": "Role Of Thirds",
+      "identifier": "role_of_thirds",
+      "script": "Role Of Thirds.cocoascript"
+    }
+  ],
+  "menu": {
+    "items": [
+      "golden_menu",
+      "golden_rectangle",
+      "golden_spiral",
+      "golden_spiral_section",
+      "golden_triangle",
+      "harmonious_triangle",
+      "role_of_thirds"
+    ]
+  }
+}
