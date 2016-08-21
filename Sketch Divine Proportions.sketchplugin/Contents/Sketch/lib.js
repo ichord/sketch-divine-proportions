@@ -30,7 +30,7 @@ function makeRect(parent, width, height, x, y) {
 }
 
 function makePath (parent, path, name) {
-  layer = MSShapeGroup.shapeWithBezierPath(bzPath)
+  layer = MSShapeGroup.shapeWithBezierPath(path)
   layer.name = name || parent.name()
   layer.style().addStylePartOfType(1)
   layer.style().border().position = 0
