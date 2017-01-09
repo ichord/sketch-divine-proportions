@@ -20,7 +20,8 @@ function makeRect(parent, width, height, x, y) {
   border = layer.style().addStylePartOfType(1)
   border.position = 0
   border.thickness = 1
-  border.color = [MSColor colorWithSVGString:"#979797"]
+  var immutable = [MSImmutableColor colorWithSVGString:"#979797"]
+  border.color = [[MSColor alloc] initWithImmutableObject:immutable]
 
   fill = layer.style().addStylePartOfType(0)
   fill.color = [MSColor colorWithRed:0 green:0 blue:0 alpha:0.0]
@@ -35,7 +36,8 @@ function makePath (parent, path, name) {
   layer.style().addStylePartOfType(1)
   layer.style().border().position = 0
   layer.style().border().thickness = 1
-  layer.style().border().color = [MSColor colorWithSVGString:"#979797"]
+  var immutable = [MSImmutableColor colorWithSVGString:"#979797"]
+  layer.style().border().color = [[MSColor alloc] initWithImmutableObject:immutable]
   layer.constrainProportions = true
 
   return parent.addLayers([layer])
