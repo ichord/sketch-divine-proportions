@@ -4,7 +4,7 @@
   "author" : "Chord.Luo",
   "authorEmail" : "chord.luo@gmail.com",
   "identifier" : "com.ichord.sketch.divine-proportions",
-  "version" : 1.0,
+  "version" : "1.0.1",
   "commands": [
     {
       "name": "Golden Menu",
