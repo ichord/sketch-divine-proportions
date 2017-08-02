@@ -33,11 +33,12 @@ function makeRect(parent, width, height, x, y) {
 function makePath (parent, path, name) {
   layer = MSShapeGroup.shapeWithBezierPath(path)
   layer.name = name || parent.name()
-  layer.style().addStylePartOfType(1)
-  layer.style().border().position = 0
-  layer.style().border().thickness = 1
+
+  var border = layer.style().addStylePartOfType(1)
+  border.position = 0
+  border.thickness = 1
   var immutable = [MSImmutableColor colorWithSVGString:"#979797"]
-  layer.style().border().color = [[MSColor alloc] initWithImmutableObject:immutable]
+  border.color = [[MSColor alloc] initWithImmutableObject:immutable]
   layer.constrainProportions = true
 
   return parent.addLayers([layer])
