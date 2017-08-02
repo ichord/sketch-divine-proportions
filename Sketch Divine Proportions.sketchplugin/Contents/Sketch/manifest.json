@@ -1,9 +1,10 @@
 {
   "name" : "Sketch Divine Proportions",
-  "description" : "Pretty much the smallest example Sketch Plugin you could have.",
+  "description" : "Draw divine proportions helper lines automatically.",
   "author" : "Chord.Luo",
   "authorEmail" : "chord.luo@gmail.com",
   "identifier" : "com.ichord.sketch.divine-proportions",
+  "appcast" : "https://raw.githubusercontent.com/ichord/sketch-divine-proportions/master/appcast.xml",
   "version" : "1.0.1",
   "commands": [
     {
