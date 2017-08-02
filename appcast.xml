@@ -37,5 +37,17 @@
       </description>
       <enclosure url="https://github.com/ichord/sketch-divine-proportions/archive/v1.0.1.zip" sparkle:version="1.0.1" />
     </item>
+    <item>
+      <title>1.0.2</title>
+      <description>
+        <![CDATA[
+          Release as major version and support Sketch 46
+          <ul>
+            <li>Fix the usage of border style API</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure url="https://github.com/ichord/sketch-divine-proportions/archive/v1.0.2.zip" sparkle:version="1.0.2" />
+    </item>
   </channel>
 </rss>
